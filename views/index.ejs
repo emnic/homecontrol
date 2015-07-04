@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>Home Control</title>
+    <!-- Load css in head not scripts -->
+    <link href="/stylesheets/cssreset.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" />
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+</head>
+
+<body ng-app="homeControl">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" data-ui-sref="home.devices">Home Control</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.devices">Devices</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.timers">Timers</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row" id="content">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div data-ui-view></div>
+            </div>
+        </div>
+        <div class="row" id="footer">
+            <hr />
+            <p class="text-left">&copy; Home Control - 2015</p>
+            <div style="padding-top:500px;">
+                $state = {{$state.current.name}}<br />
+                $stateParams = {{$stateParams}}<br />
+                $state full url = {{ $state.$current.url.source }}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="javascripts/vendor/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="javascripts/vendor/bootstrap.min.js"></script>
+    <script src="javascripts/vendor/angular.min.js"></script>
+    <script src="javascripts/vendor/angular-animate.min.js"></script>
+    <script src="javascripts/vendor/angular-resource.min.js"></script>
+    <script src="javascripts/vendor/angular-ui-router.min.js"></script>
+    <script src="javascripts/vendor/ui-bootstrap-tpls-0.13.0.min.js"></script>
+
+    <!--Load main module-->
+    <script src="javascripts/app/app.js"></script>
+    <!--Load configs -->
+    <script src="javascripts/app/config.js"></script>
+    <!--Load services-->
+    <!--Load controllers-->
+    <script src="javascripts/app/controllers/checkboxController.js"></script>
+    <script src="javascripts/app/controllers/devicesController.js"></script>
+    <script src="javascripts/app/controllers/homeController.js"></script>
+    <script src="javascripts/app/controllers/settingsController.js"></script>
+    <script src="javascripts/app/controllers/timersController.js"></script>
+    <script src="javascripts/app/controllers/timepickerController.js"></script>
+    <!--Load filters-->
+    <!--Load directives-->
+</body>
+</html>

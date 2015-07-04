@@ -1,0 +1,30 @@
+
+<div ng-repeat="device in vm.list_of_devices">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{device}}</h3>
+        </div>
+
+        <div class="panel-body" >
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-lg btn-default btn-block" type="button">Randomizer</button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-lg btn-default btn-block" type="button">Timer</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-lg btn-success btn-block" type="button">On</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-lg btn-danger btn-block" type="button">Off</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="checkbox">
+    <label>
+      <input type="checkbox"> Mon
+    </label>
+</div>        
