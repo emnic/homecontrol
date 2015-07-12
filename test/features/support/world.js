@@ -20,7 +20,8 @@ var World = function World(callback) {
   };
   
   this.testData = {};
-
+  this.res ={};
+  
   callback();
 
 };

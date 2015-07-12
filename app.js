@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var timers = require('./routes/timers');
+var devices = require('./routes/devices');
+var logfile = require('./routes/logfile');
 
 var app = express();
 
@@ -23,7 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/timers', timers)
+app.use('/timers', timers);
+app.use('/logfile', logfile);
+app.use('/devices', devices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,14 +60,24 @@ app.use(function(err, req, res, next) {
   });
 });
 
+require('./models/timers');
+require('./models/devices')
+var config = require('./config');
 var mongoose = require('mongoose');
-require('./models/homecontrol');
-mongoose.connect('mongodb://localhost/homecontrol', function(err) {
-    if(err) {
-        console.log('connection error', err);
-    } else {
-        console.log('connection successful');
-    }
-});
+
+// test only
+var env = app.get('env');
+//var env = process.env.NODE_ENV
+console.log(env);
+if ('test' === env) {
+  app.set('mongodb_uri', config.db[env]);
+}
+
+// production only
+if ('production' == env) {
+  app.set('mongodb_uri', config.db[env]);
+}
+
+mongoose.connect(app.get('mongodb_uri'));
 
 module.exports = app;

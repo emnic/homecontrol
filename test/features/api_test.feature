@@ -3,34 +3,35 @@ Feature: Test API
   I want to be able to do POST GET PUT and DELETE
   So that I can receivce, save or remove data on the server
   
-  
-  Scenario: Get all devices
+  Background:
     Given the server is responsive
+ 
+  Scenario: Get all devices
+    Given theere is a device saved
     When I send a request to get all devices
     Then I get a comlete list of all devices
-    
-  @sut 
+     
   Scenario: Add a timer
-    Given the server is responsive
-    When I have created a new timer and wants to save it
+    Given I have created a new timer and wants to save it
+    When I send a request to save the timer
     Then it is saved in the list of timers
   
   Scenario: Update a timer
-    Given the server is responsive
-    When I have created a timer and wants to update it
+    Given there is a timer saved
+    When I have made changes to the timer
     Then it is updated and saved in the list of timers  
-   
-   Scenario: Get all timers
-    Given the server is responsive
+  
+  Scenario: Get all timers
+    Given there is a timer saved
     When I send a request to get all timers
     Then I get all timers 
-    
+  
   Scenario: Delete a timer
-    Given the server is responsive
+    Given there is a timer saved
     When I send a request to remove a timer from the list of timers
     Then the timer is removed from the list
-    
+  
   Scenario: Get logfile
-    Given the server is responsive
+    Given there exist a logfile on server
     When I send a request to get the log file
     Then I get the logfile
