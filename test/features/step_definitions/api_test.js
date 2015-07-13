@@ -13,7 +13,18 @@ var Devices_model = require('../../../models/devices.js');
 // ensure the NODE_ENV is set to 'test'
 // this is helpful when you would like to change behavior when testing
 process.env.NODE_ENV = 'test';
-
+var test_schedule = { on_time: '12:00', 
+                      on_variation: '10',
+                      off_time: '13:00',
+                      off_variation: '20',
+                      mon: false,
+                      tue: true,
+                      wed: false,
+                      thu: true,
+                      fri: false,
+                      sat: true,
+                      sun: false
+                     }
 
 module.exports = function() {
   
@@ -65,9 +76,8 @@ module.exports = function() {
   });
   
   this.Given(/^there is a timer saved$/, function (callback) {
-    
-    // Prepare database with testdata
-    this.testData = { name: 'Sched1', schedule: {on_time: '12:00', off_time: '13:00'}}
+
+    this.testData = { name: 'Sched1', schedule: test_schedule}
     var timer = new Timers_model(this.testData);
   
     timer.save(function(err,data){
@@ -92,21 +102,29 @@ module.exports = function() {
     var json = JSON.parse(body);
     
     // Get variables in json and parse it to string for comparison
-    var name = JSON.stringify(json[0].name);
-    var on_time = JSON.stringify(json[0].schedule[0].on_time);
-    var off_time = JSON.stringify(json[0].schedule[0].off_time);
+    var name = json[0].name;
+    var sched = json[0].schedule[0];
     
     // Compare with post data
-    expect(name).to.equal(JSON.stringify(this.testData.name));
-    expect(on_time).to.equal(JSON.stringify(this.testData.schedule.on_time));
-    expect(off_time).to.equal(JSON.stringify(this.testData.schedule.off_time));
-    
+    expect(name).to.equal(this.testData.name);
+    expect(sched.on_time).to.equal(this.testData.schedule.on_time);
+    expect(sched.on_variation).to.equal(this.testData.schedule.on_variation);
+    expect(sched.off_time).to.equal(this.testData.schedule.off_time);
+    expect(sched.off_variation).to.equal(this.testData.schedule.off_variation);
+    expect(sched.mon).to.equal(this.testData.schedule.mon);
+    expect(sched.tue).to.equal(this.testData.schedule.tue);
+    expect(sched.wed).to.equal(this.testData.schedule.wed);
+    expect(sched.thu).to.equal(this.testData.schedule.thu);
+    expect(sched.fri).to.equal(this.testData.schedule.fri);
+    expect(sched.sat).to.equal(this.testData.schedule.sat);
+    expect(sched.sun).to.equal(this.testData.schedule.sun);
+ 
     callback();
   });
 
   this.Given(/^I have created a new timer and wants to save it$/, function (callback) {
     
-    this.testData = { name: 'Sched1', schedule: {on_time: '12:00', off_time: '13:00'}}
+    this.testData = { name: 'Sched1', schedule: test_schedule}
      
     callback();
   });
@@ -127,14 +145,22 @@ module.exports = function() {
       if (err) return next(err);
 
       // Get variables in json and parse it to string for comparison
-      var name = JSON.stringify(timers[0].name);
-      var on_time = JSON.stringify(timers[0].schedule[0].on_time);
-      var off_time = JSON.stringify(timers[0].schedule[0].off_time);
+      var name = timers[0].name;
+      var sched = timers[0].schedule[0];
 
       // Compare with post data
-      expect(name).to.equal(JSON.stringify(testData.name));
-      expect(on_time).to.equal(JSON.stringify(testData.schedule.on_time));
-      expect(off_time).to.equal(JSON.stringify(testData.schedule.off_time));
+      expect(name).to.equal(testData.name);
+      expect(sched.on_time).to.equal(testData.schedule.on_time);
+      expect(sched.on_variation).to.equal(testData.schedule.on_variation);
+      expect(sched.off_time).to.equal(testData.schedule.off_time);
+      expect(sched.off_variation).to.equal(testData.schedule.off_variation);
+      expect(sched.mon).to.equal(testData.schedule.mon);
+      expect(sched.tue).to.equal(testData.schedule.tue);
+      expect(sched.wed).to.equal(testData.schedule.wed);
+      expect(sched.thu).to.equal(testData.schedule.thu);
+      expect(sched.fri).to.equal(testData.schedule.fri);
+      expect(sched.sat).to.equal(testData.schedule.sat);
+      expect(sched.sun).to.equal(testData.schedule.sun);
       
       callback();
     });
