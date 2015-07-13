@@ -17,7 +17,7 @@
                 templateUrl: 'templates/home.html',
                 controller: 'homeController',
                 resolve: { resolvedDevices: function($http){
-                    return $http.get('http://127.0.0.1:3000/timers/')
+                    return $http.get('http://127.0.0.1:3000/timers')
                         .success(function(response) {
                             return response;
                         })
@@ -35,12 +35,10 @@
                 url: '/timers',
                 templateUrl: 'templates/timers.html',
                 controller: 'timersController',
-                resolve: { resolvedTimers: function($http){
-                    return $http.get('http://127.0.0.1:3000/timers/')
-                        .success(function(response) {
-                            return response;
-                        })
-                    }
+                resolve: {
+                    resolvedTimers: ['timers', function(timers){
+                        return timers.getAll();
+                    }]
                 },
                 controllerAs: 'vm'
             })

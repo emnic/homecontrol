@@ -3,12 +3,21 @@
 
     angular
         .module('homeControl')
-        .controller('timersController', timersController);
+        .controller('timersController', timersController)
+        .factory('timers', ['$http', function($http){
+            var factory = {};
+            factory.getAll = function() {
+                return $http.get('/timers');
+            };
+            return factory;
+        }]);
 
-    timersController.$inject = ['resolvedTimers'];
 
-    function timersController(resolvedTimers) {
+    timersController.$inject = ['resolvedTimers', 'timers'];
+
+    function timersController(resolvedTimers, timers) {
         /* jshint validthis:true */
+
         var vm = this;
         vm.list_of_timers = resolvedTimers.data;
         activate();
