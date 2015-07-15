@@ -23,5 +23,25 @@
         activate();
 
         function activate() { }
+
+        vm.Items = [{Name: "Mon"}, {Name: "Tue"}, {Name: "Wed"}, {Name: "Thu"},
+                    {Name: "Fri"}, {Name: "Sat"},{Name: "Sun"}];
+
+        vm.checkAll = function () {
+            if (vm.selectedAll) {
+                vm.selectedAll = true;
+            } else {
+                vm.selectedAll = false;
+            }
+            angular.forEach(vm.Items, function (item) {
+                item.Selected = vm.selectedAll;
+            });
+        };
+      console.log(vm.list_of_timers[0].schedule[0]);
+        vm.setDays = function(){
+            angular.forEach(vm.Items, function (item) {
+              item.Selected = vm.selectedAll;
+            });
+        }
     }
 })();
