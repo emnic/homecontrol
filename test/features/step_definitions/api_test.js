@@ -1,5 +1,22 @@
 'use strict';
-
+/*
+{ "name": "Timer 1",
+  "schedules":[{ "name": "Schedule 1",
+                "on_time": "10:00",
+                "on_variation": "10",
+                "off_time": "13:00",
+                "off_variation": "20",
+                "days": [ {"name": "Mon", "value": "false"},
+                          {"name": "Tue", "value": "true"},
+                          {"name": "Wed", "value": "false"},
+                          {"name": "Thu", "value": "true"},
+                          {"name": "Fri", "value": "false"},
+                          {"name": "Sat", "value": "true"},
+                          {"name": "Sun", "value": "false"}
+                        ]
+               }]
+}
+*/
 var baseUrl = 'http://127.0.0.1:3000/'
 
 var expect = require('chai').expect;
@@ -13,17 +30,19 @@ var Devices_model = require('../../../models/devices.js');
 // ensure the NODE_ENV is set to 'test'
 // this is helpful when you would like to change behavior when testing
 process.env.NODE_ENV = 'test';
-var test_schedule = { on_time: '12:00', 
+var test_schedule = { name: 'Schedule 1',
+                      on_time: '12:00', 
                       on_variation: '10',
                       off_time: '13:00',
                       off_variation: '20',
-                      mon: false,
-                      tue: true,
-                      wed: false,
-                      thu: true,
-                      fri: false,
-                      sat: true,
-                      sun: false
+                      days: [{name: 'Mon', value: false},
+                            {name: 'Tue', value: true},
+                            {name: 'Wed', value: false},
+                            {name: 'Thu', value: true},
+                            {name: 'Fri', value: false},
+                            {name: 'Sat', value: true},
+                            {name: 'Sun', value: false}
+                            ]
                      }
 
 module.exports = function() {
@@ -77,7 +96,7 @@ module.exports = function() {
   
   this.Given(/^there is a timer saved$/, function (callback) {
 
-    this.testData = { name: 'Sched1', schedule: test_schedule}
+    this.testData = { name: 'Sched1', schedules: test_schedule}
     var timer = new Timers_model(this.testData);
   
     timer.save(function(err,data){
@@ -103,28 +122,27 @@ module.exports = function() {
     
     // Get variables in json and parse it to string for comparison
     var name = json[0].name;
-    var sched = json[0].schedule[0];
+    var sched = json[0].schedules[0];
     
     // Compare with post data
     expect(name).to.equal(this.testData.name);
-    expect(sched.on_time).to.equal(this.testData.schedule.on_time);
-    expect(sched.on_variation).to.equal(this.testData.schedule.on_variation);
-    expect(sched.off_time).to.equal(this.testData.schedule.off_time);
-    expect(sched.off_variation).to.equal(this.testData.schedule.off_variation);
-    expect(sched.mon).to.equal(this.testData.schedule.mon);
-    expect(sched.tue).to.equal(this.testData.schedule.tue);
-    expect(sched.wed).to.equal(this.testData.schedule.wed);
-    expect(sched.thu).to.equal(this.testData.schedule.thu);
-    expect(sched.fri).to.equal(this.testData.schedule.fri);
-    expect(sched.sat).to.equal(this.testData.schedule.sat);
-    expect(sched.sun).to.equal(this.testData.schedule.sun);
+    expect(sched.on_time).to.equal(this.testData.schedules.on_time);
+    expect(sched.on_variation).to.equal(this.testData.schedules.on_variation);
+    expect(sched.off_time).to.equal(this.testData.schedules.off_time);
+    expect(sched.off_variation).to.equal(this.testData.schedules.off_variation);
+    
+    // Check days array
+    for (var i in sched.days) {
+        expect(sched.days[i].name).to.equal(this.testData.schedules.days[i].name);
+        expect(sched.days[i].value).to.equal(this.testData.schedules.days[i].value);
+    }
  
     callback();
   });
 
   this.Given(/^I have created a new timer and wants to save it$/, function (callback) {
     
-    this.testData = { name: 'Sched1', schedule: test_schedule}
+    this.testData = { name: 'Sched1', schedules: test_schedule}
      
     callback();
   });
@@ -146,21 +164,20 @@ module.exports = function() {
 
       // Get variables in json and parse it to string for comparison
       var name = timers[0].name;
-      var sched = timers[0].schedule[0];
+      var sched = timers[0].schedules[0];
 
       // Compare with post data
       expect(name).to.equal(testData.name);
-      expect(sched.on_time).to.equal(testData.schedule.on_time);
-      expect(sched.on_variation).to.equal(testData.schedule.on_variation);
-      expect(sched.off_time).to.equal(testData.schedule.off_time);
-      expect(sched.off_variation).to.equal(testData.schedule.off_variation);
-      expect(sched.mon).to.equal(testData.schedule.mon);
-      expect(sched.tue).to.equal(testData.schedule.tue);
-      expect(sched.wed).to.equal(testData.schedule.wed);
-      expect(sched.thu).to.equal(testData.schedule.thu);
-      expect(sched.fri).to.equal(testData.schedule.fri);
-      expect(sched.sat).to.equal(testData.schedule.sat);
-      expect(sched.sun).to.equal(testData.schedule.sun);
+      expect(sched.on_time).to.equal(testData.schedules.on_time);
+      expect(sched.on_variation).to.equal(testData.schedules.on_variation);
+      expect(sched.off_time).to.equal(testData.schedules.off_time);
+      expect(sched.off_variation).to.equal(testData.schedules.off_variation);
+
+      // Check days array
+      for (var i in testData.schedules.days) {
+        expect(sched.days[i].name).to.equal(testData.schedules.days[i].name);
+        expect(sched.days[i].value).to.equal(testData.schedules.days[i].value);
+      }
       
       callback();
     });
@@ -174,7 +191,7 @@ module.exports = function() {
 
       // Get variables in json and parse it to string for comparison
       id = timers[0]._id;
-      var on_time = timers[0].schedule[0].on_time = '10:00'
+      //var on_time = timers[0].schedules[0].on_time = '10:00'
       
       var res = request('PUT', baseUrl + 'timers/' + id + '/ontime', { json: {on_time:'10:00'}});
       expect(res.statusCode).to.equal(200);
@@ -189,7 +206,7 @@ module.exports = function() {
       if (err) return next(err);
 
       // Get variables in json and parse it to string for comparison
-      var on_time = timers[0].schedule[0].on_time;
+      var on_time = timers[0].schedules[0].on_time;
       
       expect('10:00').to.equal(on_time);
       

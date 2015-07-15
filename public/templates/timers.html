@@ -1,125 +1,125 @@
 
 <div ng-repeat="timer in vm.list_of_timers">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-10">
-                    <h3 class="panel-title">{{timer.name}}</h3>
-                </div>
-                <div class="col-md-2 col-md-offset-11">
-                    <button class="btn btn-sm btn-primary" type="button">Add</button>
-                </div>
-            </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-10">
+          <h3 class="panel-title">{{timer.name}}</h3>
         </div>
-
-        <div class="panel-body">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 class="panel-title">Morning</h3>
-                        </div>
-                        <div class="col-md-3">
-                            <h3 class="panel-title">Start time: {{startTime}}</h3>
-                        </div>
-                        <div class="col-md-4">
-                            <h3 class="panel-title">Stop time: {{stopTime}}</h3>
-                        </div>
-                        <div class="col-md-1">
-                            <button class="btn btn-sm btn-primary btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body" ng-show="collapsed">
-                    <div class="row" >
-                        
-                        <div class="col-md-3">
-                            <div ng-controller="TimepickerCtrl">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Start time
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li>Sunrise</li>
-                                        <li>Sunset</li>
-                                        <li>Clock</li>
-                                    </ul>
-                                </div>
-                                <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
-                                </timepicker>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Add Variation
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li>+/- 10 min</li>
-                                        <li>+/- 20 min</li>
-                                        <li>+/- 30 min</li>
-                                        <li>+/- 40 min</li>
-                                        <li>+/- 50 min</li>
-                                    </ul>
-                                </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div ng-controller="TimepickerCtrl">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Stop time
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li>Sunrise</li>
-                                        <li>Sunset</li>
-                                        <li>Clock</li>
-                                    </ul>
-                                </div>
-                                <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
-                                </timepicker>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Add Variation
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li>+/- 10 min</li>
-                                        <li>+/- 20 min</li>
-                                        <li>+/- 30 min</li>
-                                        <li>+/- 40 min</li>
-                                        <li>+/- 50 min</li>
-                                    </ul>
-                                </div>
-                        </div>  
-                    </div>
-                    <div class="col-md-1"/>
-                    <div class="col-md-1"/>
-                    <div class="col-md-1">
-                       <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll()" /> All
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-1" ng-repeat="item in vm.Items">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="item.Selected" /> {{item.Name}}
-                            </label>
-                        </div>
-                    </div>
-                    <br>
-                    <button class="btn btn-md btn-primary btn-block" type="button">Save</button>
-                </div>
-            </div>
+        <div class="col-md-2 col-md-offset-11">
+          <button class="btn btn-sm btn-primary" type="button">Add</button>
         </div>
+      </div>
     </div>
+
+    <div class="panel-body">
+        <div ng-repeat="schedule in timer.schedules">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-md-4">
+                  <h3 class="panel-title">{{schedule.name}}</h3>
+                </div>
+                <div class="col-md-3">
+                  <h3 class="panel-title">Start time: {{schedule.on_time}}</h3>
+                </div>
+                <div class="col-md-4">
+                  <h3 class="panel-title">Stop time: {{schedule.off_time}}</h3>
+                </div>
+                <div class="col-md-1">
+                  <button class="btn btn-sm btn-primary btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Edit</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body" ng-show="collapsed">
+              <div class="row" >
+                <div class="col-md-3">
+                  <div ng-controller="TimepickerCtrl">
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Start time
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>Sunrise</li>
+                        <li>Sunset</li>
+                        <li>Clock</li>
+                      </ul>
+                      </div>
+                      <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                      </timepicker>
+                  </div>
+                </div>
+                      <div class="col-md-3">
+                              <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                      Add Variation
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                      <li>+/- 10 min</li>
+                                      <li>+/- 20 min</li>
+                                      <li>+/- 30 min</li>
+                                      <li>+/- 40 min</li>
+                                      <li>+/- 50 min</li>
+                                  </ul>
+                              </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div ng-controller="TimepickerCtrl">
+                              <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                      Stop time
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                      <li>Sunrise</li>
+                                      <li>Sunset</li>
+                                      <li>Clock</li>
+                                  </ul>
+                              </div>
+                              <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                              </timepicker>
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                              <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                      Add Variation
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                      <li>+/- 10 min</li>
+                                      <li>+/- 20 min</li>
+                                      <li>+/- 30 min</li>
+                                      <li>+/- 40 min</li>
+                                      <li>+/- 50 min</li>
+                                  </ul>
+                              </div>
+                      </div>  
+                  </div>
+              <div class="col-md-1"/>
+              <div class="col-md-1"/>
+              <div class="col-md-1">
+                     <div class="checkbox">
+                          <label>
+                              <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll()" /> All
+                          </label>
+                      </div>
+                  </div>
+              <div class="col-md-1" ng-repeat="day in schedule.days">
+                  <div class="checkbox">
+                      <label>
+                          <!--<input type="checkbox" ng-model="item.Selected" /> {{item.Name}}-->
+                          <input type="checkbox" ng-model="day.value" /> {{day.name}}
+                      </label>
+                  </div>
+              </div>
+              <br>
+              <button class="btn btn-md btn-primary btn-block" type="button">Save</button>
+            </div>
+          </div>
+        </div>
 </div>
 <div class="row">
     <div class="col-md-12" width="100%">
