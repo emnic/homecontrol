@@ -4,10 +4,6 @@ var fs = require('fs');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  /*fs.readFile('../logs/homecontrol.txt', function(err, data){
-    console.log(data);
-      
-  });*/
   fs.readFile('./logs/homecontrol.txt', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
