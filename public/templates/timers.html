@@ -4,21 +4,26 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-md-10">
-          <h3 class="panel-title">{{timer.name}}</h3>
+          <h3 ng-show="!collapsed" class="panel-title">{{timer.name}}</h3>
+          <input ng-show="collapsed" ng-model="timer.name" />
         </div>
-        <div class="col-md-2 col-md-offset-11">
-          <button class="btn btn-sm btn-primary" type="button">Add</button>
+        <div class="col-md-2">
+          <!--<button class="btn btn-sm btn-primary" ng-click="vm.addSchedule(timer.schedules)"-->
+          <button class="btn btn-sm btn-primary btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Edit</button>
+        </div>
+
         </div>
       </div>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body" ng-show="collapsed">
         <div ng-repeat="schedule in timer.schedules">
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="row">
                 <div class="col-md-4">
-                  <h3 class="panel-title">{{schedule.name}}</h3>
+                  <h3 ng-show="!collapsed"  class="panel-title">{{schedule.name}}</h3>
+                  <input ng-show="collapsed" ng-model="schedule.name" />
                 </div>
                 <div class="col-md-3">
                   <h3 class="panel-title">Start time: {{schedule.on_time}}</h3>
@@ -98,31 +103,49 @@
                               </div>
                       </div>  
                   </div>
+              <br>
               <div class="col-md-1"/>
               <div class="col-md-1"/>
               <div class="col-md-1">
-                     <div class="checkbox">
-                          <label>
-                              <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll()" /> All
-                          </label>
-                      </div>
-                  </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="vm.selectedAll"   /> All
+                  </label>
+                </div>
+              </div>
               <div class="col-md-1" ng-repeat="day in schedule.days">
-                  <div class="checkbox">
-                      <label>
-                          <!--<input type="checkbox" ng-model="item.Selected" /> {{item.Name}}-->
-                          <input type="checkbox" ng-model="day.value" /> {{day.name}}
-                      </label>
-                  </div>
+                <div class="checkbox">
+                  <label>
+                    <!--<input type="checkbox" ng-model="item.Selected" /> {{item.Name}}-->
+                    <input type="checkbox" ng-model="item.Selected" ng-model="day.value" /> {{day.name}}
+                  </label>
+                </div>
               </div>
               <br>
-              <button class="btn btn-md btn-primary btn-block" type="button">Save</button>
+              <br>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="btn btn-md btn-primary btn-block" type="button">Save</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-md btn-default btn-block" type="button" ng-click="collapsed=!collapsed">Cancel</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12" width="100%">
+            <button class="btn btn-lg btn-default btn-block" type="button" ng-click="vm.addSchedule(timer.schedules)">Add Schedule</button>
+          </div>
+        </div>
+    </div>
 </div>
 <div class="row">
-    <div class="col-md-12" width="100%">
-        <button class="btn btn-lg btn-default btn-block" type="button">Add Timer</button>
-    </div>
+  <br>
+  <div class="col-md-12" width="100%">
+      <button class="btn btn-lg btn-default btn-block" type="button" ng-click="vm.addTimer()">Add Timer</button>
+  </div>
 </div>

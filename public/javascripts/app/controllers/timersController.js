@@ -16,27 +16,53 @@
     timersController.$inject = ['resolvedTimers', 'timers'];
 
     function timersController(resolvedTimers, timers) {
-        /* jshint validthis:true */
 
-        var vm = this;
-        vm.list_of_timers = resolvedTimers.data;
-      console.log(vm);
-        activate();
+      var vm = this;
+      vm.list_of_timers = resolvedTimers.data;
+      activate();
 
-        function activate() { }
-        
-        /*vm.Items = [{Name: "Mon"}, {Name: "Tue"}, {Name: "Wed"}, {Name: "Thu"},
-                    {Name: "Fri"}, {Name: "Sat"},{Name: "Sun"}];*/
+      function activate() { }
 
-        vm.checkAll = function () {
-            if (vm.selectedAll) {
-                vm.selectedAll = true;
-            } else {
-                vm.selectedAll = false;
-            }
-            angular.forEach(vm.Items, function (item) {
-                item.Selected = vm.selectedAll;
-            });
-        };
+      vm.Items = [{Name: "Mon"}, {Name: "Tue"}, {Name: "Wed"}, {Name: "Thu"},
+                  {Name: "Fri"}, {Name: "Sat"},{Name: "Sun"}];
+
+      vm.checkAll = function () {
+          if (vm.selectedAll) {
+              vm.selectedAll = true;
+          } else {
+              vm.selectedAll = false;
+          }
+          angular.forEach(vm.Items, function (item) {
+              item.Selected = vm.selectedAll;
+          });
+      };
+
+      vm.addTimer = function () {
+        var num_timers = vm.list_of_timers.length + 1
+        vm.list_of_timers.push(
+        { name: "NoName Timer " + num_timers,
+          schedules:[]
+        })
+        console.log('Timer Added');
+      };
+
+      vm.addSchedule = function (schedules) {
+        var num_schedules = schedules.length + 1;
+        schedules.push(
+          { name: "NoName Schedule " + num_schedules,
+            on_time: "12:00",
+            on_variation: "10",
+            off_time: "12:00",
+            off_variation: "20",
+            days: [ {name: "Mon", value: "false"},
+                    {name: "Tue", value: "false"},
+                    {name: "Wed", value: "false"},
+                    {name: "Thu", value: "false"},
+                    {name: "Fri", value: "false"},
+                    {name: "Sat", value: "false"},
+                    {name: "Sun", value: "false"}
+                  ]
+          })
+      };
     }
 })();
