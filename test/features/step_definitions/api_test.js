@@ -50,7 +50,7 @@ module.exports = function() {
   this.World = require("../support/world.js").World; 
   
   this.Given(/^the server is responsive$/, function (callback) {
-    
+    browser.get('http://www.google.com')
     var res = request('GET',baseUrl);
     expect(res.statusCode).to.equal(200);
 
