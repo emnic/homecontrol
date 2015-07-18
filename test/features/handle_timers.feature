@@ -18,7 +18,7 @@ Feature: Timers
     When I choose to delete the timer
     Then the timer is removed from the list of timers
 
-  @gui_test
+  @gui_test @sut
   Scenario: Add schedule to timer
     Given there exist at least on timer
     When I choose to add a schedule to the timer
@@ -26,7 +26,7 @@ Feature: Timers
 
   @gui_test
   Scenario: Remove schedule on timer
-    Given there exist one schedule on a timer
+    Given there exist one schedule one a timer
     When I choose to delete a schedule on the selected timer
     Then the schedule is removed
 
