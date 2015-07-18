@@ -20,7 +20,7 @@ module.exports = function() {
   
   this.World = require("../support/world.js").World;
   
-  this.Given(/^the homecontrol userinterface is displayed$/, function (callback) {
+  this.Given(/^the homecontrol user interface is displayed$/, function (callback) {
     browser.get('/');
 
     expect(browser.getTitle()).to.eventually.equal('Home Control').and.notify(callback);

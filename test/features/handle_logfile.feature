@@ -6,19 +6,19 @@ Feature: Handle logfile
   Background:
     Given the homecontrol userinterface is displayed
 
-  @gui_test
+  @gui_test @wip
   Scenario: Watch logfile
     Given I'm in the logfile section
     When I want to watch the logfile
     Then the logfile is displayed 
 
-  @gui_test
+  @gui_test @wip
   Scenario: Filter logfile on dates
     Given there exist a logfile with entries in it
     When I choose to filter on a specific timespan
     Then only logfile entries between the specifed dates are displayed
 
-  @gui_test
+  @gui_test @wip
   Scenario: Filter logfile on device name
     Given there exist a logfile with entries in it
     When I choose to filter on a specific device ID 

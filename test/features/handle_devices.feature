@@ -6,25 +6,25 @@ Feature: Handle devices
   Background:
     Given the homecontrol userinterface is displayed
 
-  @gui_test
+  @gui_test @wip
   Scenario: Add a new device
     Given I'm in the device section
     When I want to create a new device
     Then the new device is added to the list of devices
 
-  @gui_test
+  @gui_test @wip
   Scenario: Remove device
     Given there exist at least one device
     When I choose to delete a device
     Then the device is removed from the list of devices
 
-  @gui_test
+  @gui_test @wip
   Scenario: Add timer to device
     Given there exists at least one device and one timer
     When I choose to add a timer to a device
     Then the timers is added to the device
 
-  @gui_test
+  @gui_test @wip
   Scenario: Remove timer from device
     Given a timer is added to a device
     When I choose to remove the timer from the device
