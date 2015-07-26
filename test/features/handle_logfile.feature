@@ -6,11 +6,11 @@ Feature: Handle logfile
   Background:
     Given the homecontrol user interface is displayed
 
-  @gui_test @wip
+  @gui_test @sut
   Scenario: Watch logfile
     Given I'm in the logfile section
     When I want to watch the logfile
-    Then the logfile is displayed 
+    Then the logfile is displayed
 
   @gui_test @wip
   Scenario: Filter logfile on dates
