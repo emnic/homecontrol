@@ -1,32 +1,40 @@
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
-lkejrglkeajrglaerglkeajrgjaergjearglakerglkeajrglkearglkaejrgleakrjg
-lekrglekrglekrjgearlgkjearglkjergeargaergaergaergaergaergaergage aerg earg 
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;
+2015-07-07 15:32:16; Timer 1; on;
+2015-07-07 15:32:17; Timer 1; off;
+2015-07-07 15:39:17; Motion detector; triggered;
+2015-07-07 16:32:16; Timer 3; on;
+2015-07-07 16:32:17; Timer 4; off;

@@ -56,7 +56,18 @@
                 controller: 'settingsController',
                 controllerAs: 'vm'
             })
-    }    
+            .state("home.logs", {
+                url: '/logs',
+                templateUrl: 'templates/logs.html',
+                controller: 'logsController',
+                resolve: {
+                    resolvedLogs: ['logs', function(logs){
+                        return logs.getAll();
+                    }]
+                },
+                controllerAs: 'vm'
+            })
+    }
 
     run.$inject = ['$rootScope', '$state', '$stateParams'];
 
