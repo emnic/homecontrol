@@ -29,6 +29,14 @@
                 url: '/devices',
                 templateUrl: 'templates/devices.html',
                 controller: 'devicesController',
+                resolve: {
+                    resolvedDevices: ['devices', function(devices){
+                        return devices.getAll();
+                    }],
+                    resolvedTimers: ['timers', function(timers){
+                        return timers.getAll();
+                    }]
+                },
                 controllerAs: 'vm'
             })
             .state("home.timers", {

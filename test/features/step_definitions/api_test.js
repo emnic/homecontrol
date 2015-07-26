@@ -44,7 +44,7 @@ var test_schedule = { name: 'Schedule 1',
                             {name: 'Thu', value: true},
                             {name: 'Fri', value: false},
                             {name: 'Sat', value: true},
-                            {name: 'Sun', value: false}
+                            {name: 'Sun', value: true}
                             ]
                      }
 

@@ -19,10 +19,13 @@ router.param('devices', function(req, res, next, id) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  Devices_model.find(function (err, devices) {
+  console.log('hejhej')
+  res.json([{name: 'Device1', timers:null}]);
+  /*Devices_model.find(function (err, devices) {
     if (err) return next(err);
-    res.json(devices);
-  });
+    //res.json(devices);
+    //res,json([{ name: 'Device1', timers:null});
+  });*/
 });
 
 router.post('/', function(req, res, next) {
@@ -35,8 +38,6 @@ router.post('/', function(req, res, next) {
 router.put('/:devices/', function(req, res, next) {
   req.devices.updateOnTime(req.body, function (err, post) {
     if (err) return next(err);
-    console.log('blahablaha');
-    console.log(post);
     res.json(post)
   });
 });
