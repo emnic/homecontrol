@@ -4,7 +4,7 @@ Feature: Handle logfile
   So that I can see when the devices has been switched on and off
   
   Background:
-    Given the homecontrol userinterface is displayed
+    Given the homecontrol user interface is displayed
 
   @gui_test @wip
   Scenario: Watch logfile

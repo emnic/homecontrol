@@ -44,7 +44,7 @@ var test_schedule = { name: 'Schedule 1',
                             {name: 'Thu', value: true},
                             {name: 'Fri', value: false},
                             {name: 'Sat', value: true},
-                            {name: 'Sun', value: true}
+                            {name: 'Sun', value: false}
                             ]
                      }
 
@@ -53,15 +53,14 @@ module.exports = function() {
   this.World = require("../support/world.js").World; 
     
   this.Given(/^theere is a device saved$/, function (callback) {
-      // Prepare database with testdata
+    // Prepare database with testdata
     this.testData = { name: 'Device1', timers:null}
     var device = new Devices_model(this.testData);
 
     device.save(function(err,data){
       if(err)return console.error(err);
-        
       callback();
-    }); 
+    });
   });
 
   this.When(/^I send a request to get all devices$/, function (callback) {

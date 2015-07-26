@@ -20,12 +20,12 @@ router.param('devices', function(req, res, next, id) {
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log('hejhej')
-  res.json([{name: 'Device1', timers:null}]);
-  /*Devices_model.find(function (err, devices) {
+  //res.json([{name: 'Device1', timers:null}]);
+  Devices_model.find(function (err, devices) {
     if (err) return next(err);
-    //res.json(devices);
+    res.json(devices);
     //res,json([{ name: 'Device1', timers:null});
-  });*/
+  });
 });
 
 router.post('/', function(req, res, next) {
