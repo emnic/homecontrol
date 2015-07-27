@@ -7,6 +7,13 @@ Feature: Handle devices
     Given the homecontrol user interface is displayed
 
   @gui_test
+  Scenario: Edit mode
+    Given I'm in the device section
+    When I want to make a change or add a device
+    Then I enter edit mode to make changes
+    And close edit mode when the changes are done
+
+  @gui_test
   Scenario: Add a new device
     Given I'm in the device section
     When I want to create a new device
@@ -30,17 +37,17 @@ Feature: Handle devices
     When I choose to remove the timer from the device
     Then the timers is removed from the device
 
-  @gui_test @wip
+  @gui_test
   Scenario: Cancel updates on timer
     Given there exist at least one device
     When I choose to make updates on the device and press "Cancel"
-    Then the updates are "Saved" on the device
+    Then the updates are "Not Saved" on the device
 
-  @gui_test @wip
+  @gui_test
   Scenario: Save updates on timer
     Given there exist at least one device
-    When I choose to make updates on the device but press "Save"
-    Then the updates are "Not Saved" on the device
+    When I choose to make updates on the device and press "Save"
+    Then the updates are "Saved" on the device
 
   @gui_test @wip
   Scenario: Manually input device ID to device

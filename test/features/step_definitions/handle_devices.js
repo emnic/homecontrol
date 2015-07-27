@@ -26,9 +26,27 @@ module.exports = function() {
     });
   });
 
-  this.When(/^I want to create a new device$/, function (callback) {
-    element(by.buttonText('Add Device')).click().then(function(){
+  this.When(/^I want to make a change or add a device$/, function (callback) {
+    callback();
+  });
+
+  this.Then(/^I enter edit mode to make changes$/, function (callback) {
+    element(by.linkText('Edit')).click().then(function(){
       callback();
+    });
+  });
+
+  this.Then(/^close edit mode when the changes are done$/, function (callback) {
+    element(by.linkText('Close')).click().then(function(){
+      callback();
+    });
+  });
+
+  this.When(/^I want to create a new device$/, function (callback) {
+    element(by.linkText('Edit')).click().then(function(){
+      element(by.buttonText('Add Device')).click().then(function(){
+        callback();
+      });
     });
   });
 
@@ -55,9 +73,11 @@ module.exports = function() {
   });
 
   this.When(/^I choose to remove a device$/, function (callback) {
-    element(by.buttonText('Edit')).click().then(function(){
-      element(by.buttonText('Remove')).click().then(function(){
-        callback();
+    element(by.linkText('Edit')).click().then(function(){
+      element(by.linkText('Edit')).click().then(function(){
+        element(by.buttonText('Remove')).click().then(function(){
+          callback();
+        });
       });
     });
   });
@@ -99,17 +119,17 @@ module.exports = function() {
     callback.pending();
   });
 
-  this.When(/^I choose to make updates on the device and press "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+  this.When(/^I choose to make updates on the device and press "([^"]*)"$/, function (button, callback) {
+    element(by.linkText('Edit')).click().then(function(){
+      element(by.linkText('Edit')).click().then(function(){
+        element(by.buttonText(button)).click().then(function(){
+          callback();
+        });
+      });
+    });
   });
 
   this.Then(/^the updates are "([^"]*)" on the device$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
-  });
-
-  this.When(/^I choose to make updates on the device but press "([^"]*)"$/, function (arg1, callback) {
     // Write code here that turns the phrase above into concrete actions
     callback.pending();
   });

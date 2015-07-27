@@ -6,7 +6,7 @@ Feature: Handle logfile
   Background:
     Given the homecontrol user interface is displayed
 
-  @gui_test @sut
+  @gui_test
   Scenario: Watch logfile
     Given I'm in the logfile section
     When I want to watch the logfile
