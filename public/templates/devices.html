@@ -1,26 +1,31 @@
 
+<div class="row">
+  <div class="col-sm-12">
+    <a class="btn btn-sm pull-right" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!editMode.pressed]" ng-click="editMode.pressed = !editMode.pressed">{{!editMode.pressed && 'Edit  ' || 'Close'}}<span ng-show="!editMode.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
+    <br>
+    <br>
+    <br>
+  </div>
+</div>
 <div ng-repeat="device in vm.list_of_devices">
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-md-4">
-          <h3 ng-show="!collapsed" class="panel-title">{{device.name}}</h3>
-          <input ng-show="collapsed" ng-model="device.name" />
+        <div class="col-sm-6">
+          <h3 ng-show="!edit.pressed" class="panel-title">{{device.name}}</h3>
+          <input ng-show="edit.pressed" ng-model="device.name" />
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-lg btn-success btn-block" type="button">On</button>
+        <div class="col-sm-3">
+          <a ng-show="editMode.pressed" class="btn btn-md btn-block" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!edit.pressed]" ng-click="edit.pressed = !edit.pressed">{{!edit.pressed && 'Edit  ' || 'Close'}}<span ng-show="!edit.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-lg btn-danger btn-block" type="button">Off</button>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Edit</button>
+        <div class="col-sm-3">
+          <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.pressed]" ng-click="device.pressed = !device.pressed">{{!device.pressed && 'Turn On' || 'Turn Off'}}</a>
         </div>
       </div>
     </div>
-    <div class="panel-body" ng-show="collapsed">
+    <div class="panel-body" ng-show="edit.pressed">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Add Timer
@@ -33,25 +38,27 @@
               </ul>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-xs-6">
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="vm.removeDevice(device)">Remove</button>
+        <div class="col-xs-3">
+          <button class="btn btn-md btn-primary btn pull-right" type="button" ng-click="vm.removeDevice(device)">Remove
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
       <br>
       <br>
       <div class="row">
-        <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="collapsed" ng-click="vm.saveDevice(); collapsed=!collapsed">Save</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="edit.pressed" ng-click="vm.saveDevice(); edit.pressed=!edit.pressed">Save</button>
       </div>
       <div class="row">
-        <button class="btn btn-lg btn-default btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Cancel</button>
+        <button class="btn btn-lg btn-default btn-block" type="button" ng-model="edit.pressed" ng-click="edit.pressed=!edit.pressed">Cancel</button>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12" width="100%">
-    <button class="btn btn-lg btn-default btn-block" type="button" ng-click="vm.addDevice()">Add Device</button>
+    <button ng-show="editMode.pressed" class="btn btn-lg btn-default btn-block" type="button" ng-click="vm.addDevice()">Add Device</button>
   </div>
 </div>
