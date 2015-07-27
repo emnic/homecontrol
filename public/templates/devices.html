@@ -1,30 +1,57 @@
 
 <div ng-repeat="device in vm.list_of_devices">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{device}}</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 ng-show="!collapsed" class="panel-title">{{device.name}}</h3>
+          <input ng-show="collapsed" ng-model="device.name" />
         </div>
-
-        <div class="panel-body" >
-            <div class="row">
-                <div class="col-md-2">
-                    <button class="btn btn-lg btn-default btn-block" type="button">Randomizer</button>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-lg btn-default btn-block" type="button">Timer</button>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-lg btn-success btn-block" type="button">On</button>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-lg btn-danger btn-block" type="button">Off</button>
-                </div>
-            </div>
+        <div class="col-md-3">
+          <button class="btn btn-lg btn-success btn-block" type="button">On</button>
         </div>
+        <div class="col-md-3">
+          <button class="btn btn-lg btn-danger btn-block" type="button">Off</button>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Edit</button>
+        </div>
+      </div>
     </div>
+    <div class="panel-body" ng-show="collapsed">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add Timer
+            <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <div ng-repeat="timer in vm.list_of_timers">
+                  <li> {{timer}}</li>
+                </div>
+              </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="vm.removeDevice(device)">Remove</button>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="collapsed" ng-click="vm.saveDevice(); collapsed=!collapsed">Save</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-lg btn-default btn-block" type="button" ng-model="collapsed" ng-click="collapsed=!collapsed">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="checkbox">
-    <label>
-      <input type="checkbox"> Mon
-    </label>
-</div>        
+<div class="row">
+  <div class="col-md-12" width="100%">
+    <button class="btn btn-lg btn-default btn-block" type="button" ng-click="vm.addDevice()">Add Device</button>
+  </div>
+</div>

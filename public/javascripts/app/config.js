@@ -29,6 +29,14 @@
                 url: '/devices',
                 templateUrl: 'templates/devices.html',
                 controller: 'devicesController',
+                resolve: {
+                    resolvedDevices: ['devices', function(devices){
+                        return devices.getAll();
+                    }],
+                    resolvedTimers: ['timers', function(timers){
+                        return timers.getAll();
+                    }]
+                },
                 controllerAs: 'vm'
             })
             .state("home.timers", {
@@ -48,7 +56,18 @@
                 controller: 'settingsController',
                 controllerAs: 'vm'
             })
-    }    
+            .state("home.logs", {
+                url: '/logs',
+                templateUrl: 'templates/logs.html',
+                controller: 'logsController',
+                resolve: {
+                    resolvedLogs: ['logs', function(logs){
+                        return logs.getAll();
+                    }]
+                },
+                controllerAs: 'vm'
+            })
+    }
 
     run.$inject = ['$rootScope', '$state', '$stateParams'];
 

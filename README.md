@@ -45,3 +45,6 @@ This is not necessary but nice to have a clean development environment.
 
 ###Run tests
 1. Navigate to the test folder and type: "../node_modules/cucumber/bin/cucumber.js"
+
+###Add tag to run specific tags
+../node_modules/protractor/bin/protractor config.js --cucumberOpts.tags="@sut"
