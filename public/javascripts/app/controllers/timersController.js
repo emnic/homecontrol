@@ -23,8 +23,8 @@
 
       function activate() { }
 
-      vm.Items = [{Name: "Mon"}, {Name: "Tue"}, {Name: "Wed"}, {Name: "Thu"},
-                  {Name: "Fri"}, {Name: "Sat"},{Name: "Sun"}];
+      vm.Items = [{Name: "M"}, {Name: "T"}, {Name: "W"}, {Name: "T"},
+                  {Name: "F"}, {Name: "S"},{Name: "S"}];
 
       vm.checkAll = function () {
           if (vm.selectedAll) {
@@ -44,6 +44,12 @@
           schedules:[]
         })
         console.log('Timer Added');
+      };
+
+      vm.removeTimer = function (timer) {
+          var num_timers = vm.list_of_timers.length - 1
+          var index = vm.list_of_timers.indexOf(timer);
+          vm.list_of_timers.splice(index, 1);
       };
 
       vm.addSchedule = function (schedules) {
