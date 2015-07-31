@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <a class="btn btn-sm pull-right" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!editMode.pressed]" ng-click="editMode.pressed = !editMode.pressed">{{!editMode.pressed && 'Edit  ' || 'Close'}}<span ng-show="!editMode.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
+    <a class="btn btn-sm pull-right" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!editMode.pressed]" ng-click="editMode.pressed = !editMode.pressed">{{!editMode.pressed && 'Edit' || 'Close'}}<span ng-show="!editMode.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
     <br>
     <br>
     <br>
@@ -17,7 +17,7 @@
               <input ng-show="editMode.pressed" ng-model="timer.name" />
             </div>
             <div class="col-sm-2">
-                <button ng-show="editMode.pressed" class="btn btn-sm btn-danger btn pull-right" type="button" ng-click="vm.removeTimer(timer)">
+                <button id="removeTimer" ng-show="editMode.pressed" class="btn btn-sm btn-danger btn pull-right" type="button" ng-click="vm.removeTimer(timer)">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </div>
@@ -33,10 +33,10 @@
                     <input ng-show="editSched.pressed" ng-model="schedule.name" />
                   </div>
                   <div class="col-sm-2">
-                    <a ng-show="editMode.pressed" class="btn btn-sm pull-right" ng-class="{true: 'btn-default', false: 'btn-default'}[!editSched.pressed]" ng-click="editSched.pressed = !editSched.pressed">
+                    <button id="editSchedule" ng-show="editMode.pressed" class="btn btn-sm pull-right" ng-class="{true: 'btn-default', false: 'btn-default'}[!editSched.pressed]" ng-click="editSched.pressed = !editSched.pressed">
                       <span ng-if="!editSched.pressed" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                       <span ng-if="editSched.pressed" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                    </a>
+                    </button>
                   </div>
                   <br>
                   <br>
@@ -132,7 +132,7 @@
                     <div class="col-sm-2">
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll(schedule.days)"/> All
+                          <input id="selectAllDays" type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll(schedule.days)"/> All
                         </label>
                       </div>
                     </div>

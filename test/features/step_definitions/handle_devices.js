@@ -30,18 +30,6 @@ module.exports = function() {
     callback();
   });
 
-  this.Then(/^I enter edit mode to make changes$/, function (callback) {
-    element(by.linkText('Edit')).click().then(function(){
-      callback();
-    });
-  });
-
-  this.Then(/^close edit mode when the changes are done$/, function (callback) {
-    element(by.linkText('Close')).click().then(function(){
-      callback();
-    });
-  });
-
   this.When(/^I want to create a new device$/, function (callback) {
     element(by.linkText('Edit')).click().then(function(){
       element(by.buttonText('Add Device')).click().then(function(){

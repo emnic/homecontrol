@@ -19,10 +19,22 @@ process.env.NODE_ENV = 'test';
 module.exports = function() {
   
   this.World = require("../support/world.js").World;
-  
+
   this.Given(/^the homecontrol user interface is displayed$/, function (callback) {
     browser.get('/');
 
     expect(browser.getTitle()).to.eventually.equal('Home Control').and.notify(callback);
+  });
+
+  this.Then(/^I enter edit mode to make changes$/, function (callback) {
+    element(by.linkText('Edit')).click().then(function(){
+      callback();
+    });
+  });
+
+  this.Then(/^close edit mode when the changes are done$/, function (callback) {
+    element(by.linkText('Close')).click().then(function(){
+      callback();
+    });
   });
 };
