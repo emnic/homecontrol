@@ -26,17 +26,6 @@
       vm.Items = [{Name: "M"}, {Name: "T"}, {Name: "W"}, {Name: "T"},
                   {Name: "F"}, {Name: "S"},{Name: "S"}];
 
-      vm.checkAll = function () {
-          if (vm.selectedAll) {
-              vm.selectedAll = true;
-          } else {
-              vm.selectedAll = false;
-          }
-          angular.forEach(vm.Items, function (item) {
-              item.Selected = vm.selectedAll;
-          });
-      };
-
       vm.addTimer = function () {
         var num_timers = vm.list_of_timers.length + 1
         vm.list_of_timers.push(
@@ -70,5 +59,17 @@
                   ]
           })
       };
+
+      vm.checkAll = function (days) {
+        if (vm.selectedAll) {
+            vm.selectedAll = true;
+        } else {
+            vm.selectedAll = false;
+        }
+        angular.forEach(days, function (day) {
+            day.value = vm.selectedAll;
+        });
+      };
+
     }
 })();

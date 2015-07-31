@@ -132,7 +132,7 @@
                     <div class="col-sm-2">
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" ng-model="vm.selectedAll"   /> All
+                          <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll(schedule.days)"/> All
                         </label>
                       </div>
                     </div>
@@ -142,7 +142,7 @@
                       <div class="checkbox">
                         <label>
                           <!--<input type="checkbox" ng-model="item.Selected" /> {{item.Name}}-->
-                          <input type="checkbox" ng-model="item.Selected" ng-model="day.value" /> {{day.name}}
+                          <input type="checkbox" ng-model="day.value" /> {{day.name}}
                         </label>
                       </div>
                     </div>
@@ -152,7 +152,7 @@
                       <div class="checkbox">
                         <label>
                           <!--<input type="checkbox" ng-model="item.Selected" /> {{item.Name}}-->
-                          <input type="checkbox" ng-model="item.Selected" ng-model="day.value" /> {{day.name}}
+                          <input type="checkbox" ng-model="day.value" /> {{day.name}}
                         </label>
                       </div>
                     </div>
