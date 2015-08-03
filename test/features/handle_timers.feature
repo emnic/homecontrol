@@ -43,7 +43,7 @@ Feature: Timers
   @gui_test @wip
   Scenario: Add randomness to start and stop timer
 
-  @gui_test @sut
+  @gui_test
   Scenario: Select all days
     Given there exist at least one timer
     And there exists at least one schedule

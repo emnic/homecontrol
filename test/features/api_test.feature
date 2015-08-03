@@ -5,39 +5,45 @@ Feature: Test API
   
   Background:
     Given the server is responsive
-  
+
   @api_test
-  Scenario: Get all devices
-    Given theere is a device saved
-    When I send a request to get all devices
-    Then I get a comlete list of all devices
-  
+  Scenario Outline: Get from server
+    Given there is a <unitType> saved
+    When I send a request to get all <unitTypes>
+    Then I get a comlete list of all <unitTypes>
+    Examples:
+    | unitType | unitTypes |
+    |  device  |  devices  |
+    |  timer   |  timers   |
+    |  logfile |  logfile  |
+
   @api_test
-  Scenario: Add a timer
-    Given I have created a new timer and wants to save it
-    When I send a request to save the timer
-    Then it is saved in the list of timers
-  
+  Scenario Outline: Add to server
+    Given I have created a new <unitType> and wants to save it
+    When I send a request to save the <unitType>
+    Then it is saved in the list of <unitTypes>
+    Examples:
+    | unitType | unitTypes |
+    |  device  |  devices  |
+    |  timer   |  timers   |
+
   @api_test
-  Scenario: Update a timer
-    Given there is a timer saved
-    When I have made changes to the timer
-    Then it is updated and saved in the list of timers  
-  
-  @api_test
-  Scenario: Get all timers
-    Given there is a timer saved
-    When I send a request to get all timers
-    Then I get all timers 
-  
-  @api_test
-  Scenario: Delete a timer
-    Given there is a timer saved
-    When I send a request to remove a timer from the list of timers
-    Then the timer is removed from the list
-  
-  @api_test
-  Scenario: Get logfile
-    Given there exist a logfile on server
-    When I send a request to get the log file
-    Then I get the logfile
+  Scenario Outline: Update on server
+    Given there is a <unitType> saved
+    When I have made changes to the <unitType>
+    Then it is updated and saved in the list of <unitTypes>
+    Examples:
+    | unitType | unitTypes |
+    |  device  |  devices  |
+    |  timer   |  timers   |
+
+  @api_test @sut
+  Scenario Outline: Delete on server
+    Given there is a <unitType> saved
+    When I send a request to remove a <unitType> from the list of <unitTypes>
+    Then the <unitType> is removed from the list
+    Examples:
+    | unitType | unitTypes |
+    |  device  |  devices  |
+    |  timer   |  timers   |
+
