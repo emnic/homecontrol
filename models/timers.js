@@ -18,7 +18,7 @@ var TimersSchema = new mongoose.Schema({
              }]
 });
 
-TimersSchema.methods.updateOnTime = function(updateTime, cb) { 
+TimersSchema.methods.updateOnTime = function(updateTime, cb) {
 
   this.schedules[0].on_time = updateTime.on_time;
   this.save(cb);

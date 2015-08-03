@@ -10,8 +10,6 @@ module.exports = function() {
   this.World = require("../support/world.js").World;
   
   this.Given(/^the server is responsive$/, function (callback) {
-      //browser.get(baseUrl);
-      //console.log(browser.getTitle());
       var res = request('GET',baseUrl);
       expect(res.statusCode).to.equal(200);
 

@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 
@@ -5,7 +6,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Devices_model = require('../models/devices.js');
 
-router.param('devices', function(req, res, next, id) {
+router.param('device', function(req, res, next, id) {
   var query = Devices_model.findById(id);
 
   query.exec(function (err, device){
@@ -19,12 +20,9 @@ router.param('devices', function(req, res, next, id) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log('hejhej')
-  //res.json([{name: 'Device1', timers:null}]);
   Devices_model.find(function (err, devices) {
     if (err) return next(err);
     res.json(devices);
-    //res,json([{ name: 'Device1', timers:null});
   });
 });
 
@@ -35,15 +33,15 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.put('/:devices/', function(req, res, next) {
-  req.devices.updateOnTime(req.body, function (err, post) {
+router.put('/:device/state', function(req, res, next) {
+  req.device.changeState(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post)
   });
 });
 
 router.delete('/:id', function(req, res, next) {
-  Devicess_model.findByIdAndRemove(req.params.id, function (err, post) {
+  Devices_model.findByIdAndRemove(req.params.id, function (err, post) {
     if (err) return next(err);
     res.status(200).json(post)
   });

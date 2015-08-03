@@ -52,7 +52,7 @@ module.exports = function() {
   
   this.World = require("../support/world.js").World; 
     
-this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
+  this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
     if (unitType === "device"){
       // Prepare database with testdata
       this.testData = { name: 'Device1', timers:null}
@@ -138,8 +138,7 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
   });
   
   this.When(/^I send a request to save the (.*)$/, function (unitType, callback) {
-    
-    var res = request('POST', baseUrl + 'timers', { json: this.testData});
+    var res = request('POST', baseUrl + unitType + 's', { json: this.testData});
     expect(res.statusCode).to.equal(200);
     
     callback();
@@ -150,7 +149,17 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
     var testData = this.testData
     
     if (unitTypes === 'devices'){
-      callback.pending();
+      Devices_model.find(function (err, devices) {
+        if (err) return next(err);
+
+        // Get variables in json and parse it to string for comparison
+        var name = devices[0].name;
+
+        // Compare with post data
+        expect(name).to.equal(testData.name);
+
+        callback();
+      });
     }
     else if (unitTypes === 'timers'){
       Timers_model.find(function (err, timers) {
@@ -179,12 +188,23 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
   });
 
   this.When(/^I have made changes to the (.*)$/, function (unitType, callback) {
-
+    var id = 0;
     if (unitType === 'device'){
-      callback.pending();
+
+      Devices_model.find(function (err, devices) {
+        if (err) return next(err);
+
+        // Get variables in json and parse it to string for comparison
+        id = devices[0]._id;
+        //var on_time = timers[0].schedules[0].on_time = '10:00'
+
+        var res = request('PUT', baseUrl + 'devices/' + id + '/state', { json: {state:true}});
+        expect(res.statusCode).to.equal(200);
+
+        callback();
+      });
     }
     else if (unitType === 'timer'){
-      var id = 0;
 
       Timers_model.find(function (err, timers) {
         if (err) return next(err);
@@ -203,7 +223,16 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
 
   this.Then(/^it is updated and saved in the list of (.*)$/, function (unitTypes, callback) {
     if (unitTypes === 'devices'){
-      callback.pending();
+      Devices_model.find(function (err, device) {
+        if (err) return next(err);
+
+        // Get variables in json and parse it to string for comparison
+        var state = device[0].state;
+
+        expect(true).to.equal(state);
+
+        callback();
+      });
     }
     else if (unitTypes === 'timers'){
       Timers_model.find(function (err, timers) {
@@ -221,7 +250,17 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
   
   this.When(/^I send a request to remove a (.*) from the list of (.*)$/, function (unitType, unitTypes, callback) {
     if (unitType === 'device'){
-      callback.pending();
+      var id = 0;
+
+      Devices_model.find(function (err, devices) {
+        if (err) return next(err);
+
+        // Get variables in json and parse it to string for comparison
+        id = devices[0]._id;
+        var res = request('DELETE', baseUrl + 'devices/' + id);
+
+        callback();
+      });
     }
     else if (unitType === 'timer'){
       var id = 0;
@@ -240,7 +279,13 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
 
   this.Then(/^the (.*) is removed from the list$/, function (unitType, callback) {
     if (unitType === 'device'){
-      callback.pending();
+      Devices_model.find(function (err, device) {
+        if (err) return next(err);
+
+        // There should be no timers in the list
+        expect(JSON.stringify(device)).to.equal(JSON.stringify([]));
+        callback();
+      });
     }
     else if (unitType === 'timer'){
       Timers_model.find(function (err, timers) {
@@ -254,27 +299,55 @@ this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
   });
 
   this.When(/^I send a request to get the log file$/, function (callback) {
-    
+
     var res = request('GET', baseUrl + 'logfile');
-    
+
     this.testData = res.getBody();
     expect(res.statusCode).to.equal(200);
-    
+
     callback();
   });
 
   this.Then(/^I get the logfile$/, function (callback) {
-    
+
     expect(this.testData.length).to.be.above(0);
-    
+
     callback();
   });
 
+  this.When(/^I send a request to turn (.*) (.*)$/, function (state, unitType, callback) {
+    var id = 0;
+
+    Devices_model.find(function (err, devices) {
+      if (err) return next(err);
+
+      // Get variables in json and parse it to string for comparison
+      id = devices[0]._id;
+
+      var res = request('PUT', baseUrl + 'devices/' + id + '/state', { json: {state:state}});
+      expect(res.statusCode).to.equal(200);
+
+      callback();
+    });
+  });
+
+  this.Then(/^the (.*) is turned (.*)$/, function (unitType, state, callback) {
+    Devices_model.find(function (err, device) {
+      if (err) return next(err);
+
+      // Get variables in json and parse it to string for comparison
+      var state = device[0].state;
+
+      expect(true).to.equal(state);
+
+      callback();
+    });
+  });
   this.Before(function(callback) {
     function clearDB() {
-      
+
       for (var i in mongoose.connection.collections) {
-        
+
         mongoose.connection.collections[i].remove(function() {});
         
       }

@@ -27,7 +27,7 @@ Feature: Test API
     |  device  |  devices  |
     |  timer   |  timers   |
 
-  @api_test
+  @api_test  @sut
   Scenario Outline: Update on server
     Given there is a <unitType> saved
     When I have made changes to the <unitType>
@@ -37,7 +37,7 @@ Feature: Test API
     |  device  |  devices  |
     |  timer   |  timers   |
 
-  @api_test @sut
+  @api_test
   Scenario Outline: Delete on server
     Given there is a <unitType> saved
     When I send a request to remove a <unitType> from the list of <unitTypes>
@@ -47,3 +47,13 @@ Feature: Test API
     |  device  |  devices  |
     |  timer   |  timers   |
 
+
+  @api_test
+  Scenario Outline: Turn device on and off
+    Given there is a <unitType> saved
+    When I send a request to turn <state> <unitType>
+    Then the <unitType> is turned <state>
+    Examples:
+    | unitType | state |
+    |  device  |  on   |
+    |  device  |  off  |
