@@ -10,7 +10,9 @@
             };
 
             o.getAll = function() {
-                return $http.get('/devices');
+                return $http.get('/devices').success(function(data){
+                  o.devices = angular.copy(data);
+                });
             };
 
             o.create = function(post) {
@@ -18,8 +20,12 @@
                 o.devices.push(data);
               });
             };
-            o.delete = function(deviceId) {
-              return $http.delete('/devices', {id: deviceId});
+
+            o.delete = function(device) {
+              return $http.delete('/devices/' + device._id).success(function(data){
+                var index = o.devices.indexOf(device);
+                o.devices.splice(index, 1);
+              });
             };
 
             return o;
@@ -39,18 +45,16 @@
           var num_devices = vm.list_of_devices.length + 1
           var device = {name: "NoName Device " + num_devices,
                         timers:null
-                        };
-          vm.list_of_devices.push(device);
-
+                       };
           devices.create(device);
+          vm.list_of_devices = devices.devices;
         };
 
         vm.removeDevice = function (device) {
           var num_devices = vm.list_of_devices.length - 1
-          var index = vm.list_of_devices.indexOf(device);
-          console.log(device);
-          vm.list_of_devices.splice(index, 1);
-          devices.delete(device._id);
+
+          devices.delete(device);
+          vm.list_of_devices = devices.devices;
         };
 
         vm.saveDevice = function () {
