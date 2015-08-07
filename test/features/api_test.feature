@@ -27,7 +27,7 @@ Feature: Test API
     |  device  |  devices  |
     |  timer   |  timers   |
 
-  @api_test  @sut
+  @api_test
   Scenario Outline: Update on server
     Given there is a <unitType> saved
     When I have made changes to the <unitType>
@@ -57,3 +57,13 @@ Feature: Test API
     | unitType | state |
     |  device  |  on   |
     |  device  |  off  |
+
+  @api_test @sut
+  Scenario Outline: Add and remove schedules on timer
+    Given there is a <unitType> saved
+    When I send a request to <action> a schedule
+    Then the schedule is <action>d to the timer
+    Examples:
+    | unitType | action |
+    |  timer   |  add   |
+    |  timer   | remove |

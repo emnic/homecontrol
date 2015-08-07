@@ -54,7 +54,7 @@ module.exports = function() {
     
   this.Given(/^there is a (.*) saved$/, function (unitType, callback) {
     if (unitType === "device"){
-      // Prepare database with testdata
+      // Prepare database with testdatatestdata
       this.testData = { name: 'Device1', timers:null}
       var device = new Devices_model(this.testData);
 
@@ -64,7 +64,7 @@ module.exports = function() {
       });
     }
     else if(unitType === "timer"){
-      this.testData = { name: 'Sched1', schedules: test_schedule}
+      this.testData = { name: 'Timer 1', schedules: test_schedule}
       var timer = new Timers_model(this.testData);
 
       timer.save(function(err,data){
@@ -343,6 +343,53 @@ module.exports = function() {
       callback();
     });
   });
+
+  var globNumSchedules = 0;
+  this.When(/^I send a request to (.*) a schedule$/, function (action, callback) {
+    var id = 0;
+
+    Timers_model.find(function (err, timers) {
+      if (err) return next(err);
+
+      // Get id of timer object
+      var timer_id = timers[0]._id;
+      var schedule_id = timers[0].schedules[0]._id;
+
+      // Save number of schedules to later verify that it has increased
+      globNumSchedules = timers[0].schedules.length;
+
+      if (action === 'add'){
+        // Send a new schedule to server
+        var res = request('PUT', baseUrl + 'timers/' + timer_id + '/add_schedule', { json: {schedule:test_schedule}});
+        expect(res.statusCode).to.equal(200);
+      }
+      else if (action === 'remove'){
+        // Send a new schedule to server
+        var res = request('DELETE', baseUrl + 'timers/' + timer_id + '/' + schedule_id);
+        expect(res.statusCode).to.equal(200);
+      }
+      callback();
+    });
+  });
+
+  this.Then(/^the schedule is (.*)d to the timer$/, function (action, callback) {
+
+    Timers_model.find(function (err, timer) {
+      if (err) return next(err);
+
+      // Get variables in json and parse it to string for comparison
+      var numSchedules = timer[0].schedules.length;
+
+      if (action === 'add'){
+        expect(numSchedules).to.equal(globNumSchedules + 1);
+      }
+      else if (action === 'remove'){
+        expect(numSchedules).to.equal(globNumSchedules - 1);
+      }
+      callback();
+    });
+  });
+
   this.Before(function(callback) {
     function clearDB() {
 
