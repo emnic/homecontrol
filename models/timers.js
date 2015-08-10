@@ -18,10 +18,16 @@ var TimersSchema = new mongoose.Schema({
              }]
 });
 
-TimersSchema.methods.updateOnTime = function(updateTime, cb) {
+TimersSchema.methods.updateOnTime = function(updateTime, callback) {
 
   this.schedules[0].on_time = updateTime.on_time;
-  this.save(cb);
+  this.save(callback);
+};
+
+TimersSchema.methods.addSchedule = function(newSchedule, callback) {
+  console.log(newSchedule);
+  this.schedules.push(newSchedule.schedule);
+  this.save(callback);
 };
 
 module.exports = mongoose.model('timers', TimersSchema);
