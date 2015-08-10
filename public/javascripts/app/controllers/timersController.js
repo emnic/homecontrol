@@ -17,19 +17,18 @@
 
             o.create = function(post) {
               return $http.post('/timers', post).success(function(data){
+                console.log(data)
                 o.timers.push(data);
               });
             };
 
             o.addSchedule = function(timer, schedule) {
               return $http.put('/timers/' + timer._id + '/add_schedule', schedule).success(function(data){
-                var index = o.timers.indexOf(timer._id);
-                console.log(index);
-                console.log(o.timers);
-                //o.timers[index].schedules.push(data);
+                var index = o.timers.indexOf(timer);
+                o.timers[index] = data;
               });
             };
-          
+
             o.deleteTimer = function(timer) {
               return $http.delete('/timers/' + timer._id).success(function(data){
                 var index = o.timers.indexOf(timer);
@@ -61,7 +60,7 @@
           name: "NoName Timer " + num_timers,
           schedules:[]
         };
-        
+
         timers.create(timer);
         vm.list_of_timers = timers.timers;
       };
@@ -90,9 +89,9 @@
                   {name: "Sun", value: "false"}
                 ]
         };
-        
-        timers.addSchedule(timer,schedules);
 
+        timers.addSchedule(timer,schedules);
+        vm.list_of_timers = timers.timers;
       };
 
       vm.checkAll = function (days) {
