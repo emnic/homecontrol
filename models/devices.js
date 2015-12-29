@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 var DeviceSchema = new mongoose.Schema({
   name: String,
   state: Boolean,
@@ -7,7 +8,6 @@ var DeviceSchema = new mongoose.Schema({
 });
 
 DeviceSchema.methods.changeState = function(newState, callback) {
-  console.log(newState.state)
   this.state = newState.state;
   this.save(callback);
 };

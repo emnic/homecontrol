@@ -19,7 +19,10 @@
           <a ng-show="editMode.pressed" class="btn btn-md btn-block" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!edit.pressed]" ng-click="edit.pressed = !edit.pressed">{{!edit.pressed && 'Edit  ' || 'Close'}}<span ng-show="!edit.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
         </div>
         <div class="col-sm-3">
+          <!--
           <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.pressed]" ng-click="device.pressed = !device.pressed">{{!device.pressed && 'Turn On' || 'Turn Off'}}</a>
+          -->
+          <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.state]" ng-click="vm.changeState(device)">{{!device.state && 'Turn On' || 'Turn Off'}}</a>          
         </div>
       </div>
     </div>

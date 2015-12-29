@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
+var device_switch = require('../telldus/tellstick_w.js');
 
 
 var mongoose = require('mongoose');
@@ -34,6 +35,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/:device/state', function(req, res, next) {
+  device_switch.on_off(req.body)
   req.device.changeState(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post)
