@@ -12,6 +12,11 @@ var logfile = require('./routes/logfile');
 
 var app = express();
 
+// Logfile
+var winston = require('winston');
+winston.add(winston.transports.File, { filename: 'logs/homecontrol.log' });
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

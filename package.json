@@ -22,6 +22,7 @@
     "serve-favicon": "~2.2.1",
     "supervisor": "~0.7.1",
     "sync-request": "~2.0.1",
-    "telldus": "^1.0.0"
+    "telldus": "^1.0.0",
+    "winston": "^2.1.1"
   }
 }

@@ -1,15 +1,16 @@
 var telldus = require('telldus');
+var winston = require('winston');
 
 module.exports = {
   on_off: function(device) {
     if (device.state === true) {
       telldus.turnOn(202,function(err) {
-        console.log('device is now ON');
+        winston.info('Device: ' + ' is turned ON');
       });
     }
     else {
       telldus.turnOff(202,function(err) {
-        console.log('deviceId is now OFF');
+        winston.info('Device: ' + ' is turned OFF');
       });
     }
   }
