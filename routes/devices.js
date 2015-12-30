@@ -28,6 +28,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+
+  req.body.hw_data.id  = device_switch.addDevice()
   Devices_model.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -50,9 +52,11 @@ router.put('/:device/state', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  Devices_model.findByIdAndRemove(req.params.id, function (err, post) {
+
+  Devices_model.findByIdAndRemove(req.params.id, function (err, data) {
     if (err) return next(err);
-    res.status(200).json(post)
+    res.status(200).json(data)
+    device_switch.removeDevice(data)
   });
 });
 
