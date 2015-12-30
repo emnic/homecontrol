@@ -12,17 +12,14 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-6">
-          <h3 ng-show="!edit.pressed" class="panel-title">{{device.name}}</h3>
-          <input ng-show="edit.pressed" ng-model="device.name" />
+          <h3 ng-show="!edit.pressed" class="panel-title">{{device.hw_data.name}}</h3>
+          <input ng-show="edit.pressed" ng-model="device.hw_data.name" />
         </div>
         <div class="col-sm-3">
           <a ng-show="editMode.pressed" class="btn btn-md btn-block" ng-class="{true: 'btn-primary', false: 'btn-primary'}[!edit.pressed]" ng-click="edit.pressed = !edit.pressed">{{!edit.pressed && 'Edit  ' || 'Close'}}<span ng-show="!edit.pressed" class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a>
         </div>
         <div class="col-sm-3">
-          <!--
-          <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.pressed]" ng-click="device.pressed = !device.pressed">{{!device.pressed && 'Turn On' || 'Turn Off'}}</a>
-          -->
-          <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.state]" ng-click="vm.changeState(device)">{{!device.state && 'Turn On' || 'Turn Off'}}</a>          
+          <a class="btn btn-md btn-block" ng-class="{true: 'btn-default', false: 'btn-warning'}[!device.state]" ng-click="vm.changeState(device)">{{!device.state && 'Turn On' || 'Turn Off'}}</a>
         </div>
       </div>
     </div>
@@ -30,6 +27,20 @@
       <div class="row">
         <div class="col-xs-3">
           <div class="dropdown">
+            Id:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.id" />
+            Controller:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.controller" />
+            Protocol:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.protocol" />
+            Model:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.model" />
+            House:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.house" />
+            Unit:
+            <input ng-show="edit.pressed" ng-model="device.hw_data.unit" />
+            <br>
+            <br>
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Add Timer
             <span class="caret"></span>
@@ -52,7 +63,7 @@
       <br>
       <br>
       <div class="row">
-        <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="edit.pressed" ng-click="vm.saveDevice(); edit.pressed=!edit.pressed">Save</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" ng-model="edit.pressed" ng-click="vm.saveDevice(device); edit.pressed=!edit.pressed">Save</button>
       </div>
       <div class="row">
         <button class="btn btn-lg btn-default btn-block" type="button" ng-model="edit.pressed" ng-click="edit.pressed=!edit.pressed">Cancel</button>

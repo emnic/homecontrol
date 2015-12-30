@@ -2,7 +2,14 @@ var mongoose = require('mongoose');
 
 
 var DeviceSchema = new mongoose.Schema({
-  name: String,
+  hw_data: {id: String,
+            name: String,
+            controller: String,
+            protocol: String,
+            model: String,
+            house: String,
+            unit: String
+           },
   state: Boolean,
   timers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Timer' }]
 });

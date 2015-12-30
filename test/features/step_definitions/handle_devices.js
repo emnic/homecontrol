@@ -39,7 +39,7 @@ module.exports = function() {
   });
 
   this.Then(/^the new device is added to the list of devices$/, function (callback) {
-    var device = element(by.binding('device.name'));
+    var device = element(by.binding('device.hw_data.name'));
 
     device.getText().then(function(text) {
       expect(text).to.equal('NoName Device 1');

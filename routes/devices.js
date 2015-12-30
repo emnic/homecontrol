@@ -34,6 +34,13 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.put('/:device', function(req, res, next) {
+  Devices_model.findByIdAndUpdate(req.params.device, {$set: {hw_data: req.body.hw_data}}, function (err, post) {
+    if (err) return next(err);
+    res.json(post)
+  });
+});
+
 router.put('/:device/state', function(req, res, next) {
   device_switch.on_off(req.body)
   req.device.changeState(req.body, function (err, post) {

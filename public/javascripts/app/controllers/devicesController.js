@@ -20,6 +20,13 @@
                 o.devices.push(data);
               });
             };
+          
+            o.update = function(device) {
+              return $http.put('/devices/' + device._id, device).success(function(data){
+                var index = o.devices.indexOf(device);
+                o.devices[index] = data;
+              });
+            };
 
             o.delete = function(device) {
               return $http.delete('/devices/' + device._id).success(function(data){
@@ -51,14 +58,28 @@
 
         vm.addDevice = function () {
           var num_devices = vm.list_of_devices.length + 1
-          var device = {name: "NoName Device " + num_devices,
+          var device = {
+                          hw_data: {
+                                      id: "111",
+                                      name: "NoName Device " + num_devices,
+                                      controller: "0",
+                                      protocol: "arctech",
+                                      model: "selflearning-switch:nexa",
+                                      house: "1111",
+                                      unit: "1",
+                          },
                         state: "false",
                         timers:null
                        };
           devices.create(device);
           vm.list_of_devices = devices.devices;
         };
-
+      
+        vm.saveDevice = function (device) {
+          devices.update(device);
+          vm.list_of_devices = devices.devices;
+        };
+      
         vm.removeDevice = function (device) {
           var num_devices = vm.list_of_devices.length - 1
 
@@ -66,15 +87,10 @@
           vm.list_of_devices = devices.devices;
         };
 
-        vm.saveDevice = function () {
-          console.log('Save');
-        };
-
         vm.changeState = function (device) {
           device.state = !device.state
           devices.change_state(device);
           vm.list_of_devices = devices.devices;
-
         };
     }
 })();

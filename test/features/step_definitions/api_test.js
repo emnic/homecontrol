@@ -128,7 +128,12 @@ module.exports = function() {
 
   this.Given(/^I have created a new (.*) and wants to save it$/, function (unitType, callback) {
     if (unitType === 'device'){
-      this.testData = { name: 'Device1', timers: null}
+      this.testData = {hw_data: {
+                                  name: 'Device1',
+                                  id: '123'
+                                },
+                       state: "false",
+                       timers: null}
     }
     else if (unitType === 'timer'){
       this.testData = { name: 'Sched1', schedules: test_schedule}
@@ -147,16 +152,17 @@ module.exports = function() {
   this.Then(/^it is saved in the list of (.*)$/, function (unitTypes, callback) {
 
     var testData = this.testData
-    
+
     if (unitTypes === 'devices'){
       Devices_model.find(function (err, devices) {
         if (err) return next(err);
 
         // Get variables in json and parse it to string for comparison
-        var name = devices[0].name;
-
+        var name = devices[0].hw_data.name;
+        
+        console.log(devices[0].hw_data)
         // Compare with post data
-        expect(name).to.equal(testData.name);
+        expect(name).to.equal(testData.hw_data.name);
 
         callback();
       });
