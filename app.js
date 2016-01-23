@@ -4,13 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var routes = require('./routes/index');
 var timers = require('./routes/timers');
 var devices = require('./routes/devices');
 var logfile = require('./routes/logfile');
 
+
 var app = express();
+
 
 // Logfile
 var winston = require('winston');
@@ -28,6 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/', routes);
 app.use('/timers', timers);
@@ -69,7 +73,7 @@ require('./models/timers');
 require('./models/devices')
 var config = require('./config');
 var mongoose = require('mongoose');
-
+/*
 // test only
 var env = app.get('env');
 //var env = process.env.NODE_ENV
@@ -84,5 +88,20 @@ if ('production' == env) {
 }
 
 mongoose.connect(app.get('mongodb_uri'));
+*/
 
+var MONGO_DB;
+var DOCKER_DB = process.env.DB_PORT;
+console.log("#####")
+console.log(DOCKER_DB)
+if ( DOCKER_DB ) {
+  MONGO_DB = DOCKER_DB.replace( 'tcp', 'mongodb' ) + '/usr/src/app';
+} else {
+  MONGO_DB = process.env.MONGODB;
+}
+console.log(MONGO_DB)
+var retry = 0;
+mongoose.connect(MONGO_DB);
+
+//app.listen(process.env.PORT || 3000);
 module.exports = app;
