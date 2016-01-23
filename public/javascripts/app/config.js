@@ -17,7 +17,7 @@
                 templateUrl: 'templates/home.html',
                 controller: 'homeController',
                 resolve: { resolvedDevices: function($http){
-                    return $http.get('http://127.0.0.1:3000/timers')
+                    return $http.get('http://192.168.99.100:3000/timers')
                         .success(function(response) {
                             return response;
                         })
