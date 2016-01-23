@@ -18,7 +18,6 @@ RUN apt-get install -qqy build-essential \
     telldus-core \
     libtelldus-core-dev
 
-COPY package.json config.js /usr/src/app/
-
-RUN npm install
-
+#COPY package.json config.js /usr/src/app/
+ADD . /usr/src/app/
+RUN npm install --unsafe-perm
