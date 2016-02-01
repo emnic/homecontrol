@@ -1,15 +1,10 @@
 'use strict';
 
-var baseUrl = 'http://127.0.0.1:3000/'
-
 var chai = require('chai');
 var chai_as_promised = require('chai-as-promised');
 chai.use(chai_as_promised);
 var expect =chai.expect;
-var config = require('../../../config');
-var mongoose = require('mongoose');
-var Timers_model = require('../../../models/timers.js');
-var Devices_model = require('../../../models/devices.js');
+
 
 var logfile = "2015-07-07 15:32:16; Timer 1; on; 2015-07-07 15:32:17; Timer 2; off; 2015-07-07 15:39:17; Motion detector; triggered; 2015-07-07 16:32:16; Timer 3; on; 2015-07-07 16:32:17; Timer 4; off; 2015-07-07 15:32:16; Timer 5; on; 2015-07-07 15:32:17; Timer 6; off;"
 

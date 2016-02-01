@@ -19,13 +19,13 @@ Feature: Timers
     When I want to create a new timer
     Then the new timer is added to the list of timers
 
-  @gui_test
+  @gui_test @wip
   Scenario: Remove timer
     Given there exist at least one timer
     When I choose to delete the timer
     Then the timer is removed from the list of timers
 
-  @gui_test
+  @gui_test @wip
   Scenario: Add schedule to timer
     Given there exist at least one timer
     When I choose to add a schedule to the timer

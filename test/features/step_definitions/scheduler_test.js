@@ -3,12 +3,8 @@
 var chai = require('chai');
 var chai_as_promised = require('chai-as-promised');
 chai.use(chai_as_promised);
-var expect =chai.expect;
+var expect = chai.expect;
 var request = require('sync-request');
-var config = require('../../../config');
-var mongoose = require('mongoose');
-var Timers_model = require('../../../models/timers.js');
-var Devices_model = require('../../../models/devices.js');
 
 process.env.NODE_ENV = 'test';
 

@@ -5,8 +5,8 @@ Feature: Test Scheduler
   
   Background:
     Given the scheduler is set in testmode
-
-  @schedule_test
+    
+  @schedule_test @wip
   Scenario Outline: Get sunrise/sunset time
     Given location <long>, <lat>
     And date <date>
@@ -19,13 +19,13 @@ Feature: Test Scheduler
     | 56,24 | 12,88 | 16-04-30 |    05:26     |    20:47    |
     | 56,24 | 12,88 | 16-09-15 |    06:41     |    19:28    |
     
-  @schedule_test
+  @schedule_test @wip
   Scenario: Calculate daily schedule
     Given a daily schedule exists
     When time passes the daily schedule time
     Then a new schedule is calculated that is different from the old schedule
 
-  @schedule_test
+  @schedule_test @wip
   Scenario Outline: Use simple schedule
     Given start time is set to <start_time>
     And stop time is set to <stop_time>

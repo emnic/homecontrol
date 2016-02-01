@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Test package for homecontrol",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "promise": "^7.1.1",
+    "request": "^2.67.0",
+    "sync-request": "^3.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

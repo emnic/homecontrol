@@ -1,15 +1,9 @@
 'use strict';
 
-var baseUrl = 'http://127.0.0.1:3000/'
-
 var chai = require('chai');
 var chai_as_promised = require('chai-as-promised');
 chai.use(chai_as_promised);
-var expect =chai.expect;
-var config = require('../../../config');
-var mongoose = require('mongoose');
-var Timers_model = require('../../../models/timers.js');
-var Devices_model = require('../../../models/devices.js');
+var expect = chai.expect;
 
 
 // ensure the NODE_ENV is set to 'test'
@@ -48,13 +42,8 @@ module.exports = function() {
   });
 
   this.Given(/^there exist at least one device$/, function (callback) {
-    // Prepare database with testdata
-    this.testData = { name: 'Device 123', timers:null}
-    var device = new Devices_model(this.testData);
-
-    device.save(function(err,data){
-      if(err)return console.error(err);
-      browser.get('/').then(function(){
+    element(by.linkText('Edit')).click().then(function(){
+      element(by.buttonText('Add Device')).click().then(function(){
         callback();
       });
     });
