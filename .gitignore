@@ -1,4 +1,6 @@
-node_modules/**
+app/node_modules/**
+test/node_modules/**
+test/target/**
 server.log
 webdriver.log
 logs/homecontrol.log
