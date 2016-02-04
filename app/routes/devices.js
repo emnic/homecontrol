@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-  req.body.hw_data.id  = device_switch.addDevice()
+  //req.body.hw_data.id  = device_switch.addDevice()
   Devices_model.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
