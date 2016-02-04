@@ -5,10 +5,11 @@ job(jobName) {
     scm {
         git(url)
     }
-    steps {
-        shell("cd app && docker-compose up")
-    }
     triggers {
         upstream('emnic-homecontrol-master', 'SUCCESS')
+    }
+    steps {
+        shell("cd app && docker-compose up -d")
+        shell("cd ../test && docker run --rm -v `pwd`:/project caltha/protractor")
     }
 }
