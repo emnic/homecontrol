@@ -19,5 +19,6 @@ RUN apt-get install -qqy build-essential \
     libtelldus-core-dev
 
 #COPY package.json config.js /usr/src/app/
+RUN ls -la
 ADD . /usr/src/app/
 RUN npm install --unsafe-perm
