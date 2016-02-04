@@ -9,7 +9,10 @@ branches.each {
             git("git://github.com/${project}.git", branchName)
         }
         steps {
-            shell("cd app && docker-compose build")
+            shell("cd app && docker-compose build && docker-compose pull")
+        }
+        triggers {
+          upstream('GUI_test', 'SUCCESS')
         }
     }
 }
