@@ -11,8 +11,5 @@ branches.each {
         steps {
             shell("cd app && docker-compose build && docker-compose pull")
         }
-        triggers {
-          upstream('GUI_test', 'SUCCESS')
-        }
     }
 }

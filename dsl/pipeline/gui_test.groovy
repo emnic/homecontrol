@@ -8,4 +8,7 @@ job(jobName) {
     steps {
         shell("cd app && docker-compose up")
     }
+    triggers {
+        upstream('emnic-homecontrol-master', 'SUCCESS')
+    }
 }
