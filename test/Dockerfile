@@ -33,13 +33,13 @@ RUN apt-get update && \
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
-RUN npm install -g protractor@2.1.0
-RUN npm install -g cucumber
+RUN npm install -g protractor@2.5.1
+RUN npm install -g cucumber@0.7.0
 
 # Install Selenium and Chrome driver
 RUN webdriver-manager update
-RUN wget "http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar"
-RUN mv selenium-server-standalone-2.45.0.jar /node_modules/protractor/bin
+#RUN wget "http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar"
+#RUN mv selenium-server-standalone-2.45.0.jar /node_modules/protractor/bin
 # Add a non-privileged user for running Protrator
 RUN adduser --home /project --uid 1000 \
   --disabled-login --disabled-password --gecos node node
@@ -60,5 +60,3 @@ CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisor.conf"]
 
 # Protractor test project needs to be mounted at /project
 VOLUME ["/project"]
-Source Repository
-  rkrzewski/dockerfile
