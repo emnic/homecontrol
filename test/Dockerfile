@@ -61,4 +61,5 @@ ADD bin/run-protractor /usr/local/bin/run-protractor
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisor.conf"]
 
 # Protractor test project needs to be mounted at /project
-VOLUME ["/usr/project"]
+#VOLUME ["/usr/project"]
+ADD . /usr/project
