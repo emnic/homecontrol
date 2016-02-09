@@ -2,6 +2,8 @@ FROM debian:testing
 
 MAINTAINER rafal.krzewski@caltha.pl
 
+USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
