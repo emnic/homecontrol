@@ -1,5 +1,5 @@
 exports.config = {
-  baseUrl: 'http://' + process.env.APP_IP + ':3000',
+  baseUrl: 'http://0.0.0.0:3000',
   rootElement: 'body',
   
   seleniumAddress: 'http://localhost:4444/wd/hub',
