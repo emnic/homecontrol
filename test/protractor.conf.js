@@ -1,7 +1,14 @@
 exports.config = {
-  baseUrl: 'http://0.0.0.0:3000',
-  rootElement: 'body',
+  onPrepare: function() {
+    // Set URL to webserver
+    if (typeof process.env.APP_IP !== "undefined") {
+        var url = 'http://' + process.env.APP_IP + ':3000';
+        browser.baseUrl = url;
+        console.log('Base URL = ' + url);
+    }
+  },
   
+  rootElement: 'body',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['./features/*.feature'],
 
