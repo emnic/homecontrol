@@ -10,6 +10,6 @@ job(jobName) {
     }
     steps {
         shell("cd app && docker-compose up -d")
-        shell cd test && docker build -t testrunner . && docker run -e APP_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' app_web_1) -rm testrunner)
+        shell("cd test && docker build -t testrunner . && docker run -e APP_IP=\$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' app_web_1) -rm testrunner")
     }
 }
