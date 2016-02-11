@@ -9,7 +9,8 @@ job(jobName) {
         upstream('emnic-homecontrol-master', 'SUCCESS')
     }
     steps {
-        shell("cd app && docker-compose up -d && APP_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' app_web_1)")
+        shell("cd app && docker-compose up -d")
+        shell("APP_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' app_web_1)")
         shell("cd test && docker build -t testrunner && docker run -e APP_IP=$APP_IP -rm testrunner")
     }
 }
