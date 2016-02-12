@@ -63,3 +63,4 @@ CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisor.conf"]
 # Protractor test project needs to be mounted at /project
 #VOLUME ["/usr/project"]
 ADD . /project
+RUN chown -R `whoami` ~/.npm && sudo chown -R `whoami` /usr/lib/node_modules/
