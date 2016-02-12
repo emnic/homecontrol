@@ -2,7 +2,7 @@ FROM debian:testing
 
 MAINTAINER rafal.krzewski@caltha.pl
 WORKDIR /usr/project
-USER root
+#USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
