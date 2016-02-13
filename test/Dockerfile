@@ -1,8 +1,6 @@
 FROM debian:testing
 
 MAINTAINER rafal.krzewski@caltha.pl
-WORKDIR /usr/project
-#USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -19,7 +17,7 @@ RUN curl http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-mu
   echo "deb http://www.deb-multimedia.org stretch main non-free" >> /etc/apt/sources.list
   
 RUN apt-get update && \
-  apt-get install -y \
+  apt-get install -y --fix-missing \
     openjdk-8-jre \
     xvfb \
     libgconf-2-4 \
@@ -40,8 +38,7 @@ RUN npm install -g cucumber@0.7.0
 
 # Install Selenium and Chrome driver
 RUN webdriver-manager update
-#RUN wget "http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar"
-#RUN mv selenium-server-standalone-2.45.0.jar /node_modules/protractor/bin
+
 # Add a non-privileged user for running Protrator
 RUN adduser --home /project --uid 1000 \
   --disabled-login --disabled-password --gecos node node
@@ -61,6 +58,8 @@ ADD bin/run-protractor /usr/local/bin/run-protractor
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisor.conf"]
 
 # Protractor test project needs to be mounted at /project
-#VOLUME ["/usr/project"]
 ADD . /project
-RUN chown -R `whoami` ~/.npm && chown -R `whoami` /usr/lib/node_modules/
+
+# Change ownership and group for files added in project
+RUN chown -R node:node /project
+
