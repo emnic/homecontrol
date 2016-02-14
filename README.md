@@ -9,12 +9,12 @@ The only thing that needs to be installed on the host computer is Docker and Doc
 - **Linux** TODO
 
 ### Setup and start Jenkins
-1. Open the Docker Quickstart Terminal
+1. Open the Docker Quickstart Terminal. Note the IP address. This is going to be used to access the Jenkins GUI later on *IP_OF_DOCKER_HOST*.
 2. Dowload this project
 3. Navigate into the project and type "./setup.sh"
 
 This will automatically start Jenkins in a Docker container, download and install all plugins specifed in "jenkins/plugins.txt".
-Jenkins GUI should now be accessible in a browser at the following URL: "0.0.0.0:8080". (It might take a minute before everything is up and running)
+Jenkins GUI should now be accessible in a browser at the following URL: "*IP_OF_DOCKER_HOST*:8080". (It might take a minute before everything is up and running)
 
 ### Configure Jenkins 
 In Jenkins: Navigate to "Manage Jenkins" and then "Configure System". Scroll down to the Github plugin and input username and email. 
