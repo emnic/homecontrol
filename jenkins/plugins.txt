@@ -36,3 +36,5 @@ docker-plugin 0.13.0
 delivery-pipeline-plugin 0.9.7
 view-job-filters 1.27
 sectioned-view 1.19
+github 1.17.0
+github-api 1.72
